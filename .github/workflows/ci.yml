@@ -1,0 +1,36 @@
+name: Java CI
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    build-test-format:
+        runs-on: ubuntu-latest
+
+        defaults:
+            run:
+                working-directory: app
+
+        steps:
+            - name: Repository auschecken
+              uses: actions/checkout@v4
+
+            - name: Java 25 installieren
+              uses: actions/setup-java@v4
+              with:
+                  distribution: temurin
+                  java-version: 25
+
+            - name: Gradle Wrapper ausführbar machen
+              run: chmod +x gradlew
+
+            - name: Projekt bauen
+              run: ./gradlew build
+
+            - name: Tests ausführen
+              run: ./gradlew test
+
+            - name: Formatierung prüfen
+              run: ./gradlew spotlessCheck

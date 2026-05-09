@@ -3,15 +3,11 @@ name: Java CI
 on:
     push:
         branches:
-            - master
+            - main
 
 jobs:
     build-test-format:
         runs-on: ubuntu-latest
-
-        defaults:
-            run:
-                working-directory: app
 
         steps:
             - name: Repository auschecken
@@ -23,14 +19,14 @@ jobs:
                   distribution: temurin
                   java-version: 25
 
-            - name: Gradle Wrapper ausführbar machen
-              run: chmod +x gradlew
-
             - name: Projekt bauen
               run: ./gradlew build
+              working-directory: app
 
             - name: Tests ausführen
               run: ./gradlew test
+              working-directory: app
 
             - name: Formatierung prüfen
               run: ./gradlew spotlessCheck
+              working-directory: app

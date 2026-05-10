@@ -47,7 +47,6 @@ class CatCafeTest {
         cafe.addCat(new FelineOverLord("Melone", 4));
         cafe.addCat(kit);
 
-
         FelineOverLord result = cafe.getCatByName("Kit");
 
         assertEquals(kit, result);

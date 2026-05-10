@@ -21,12 +21,12 @@ jobs:
 
             - name: Projekt bauen
               run: ./gradlew build
-              working-directory: app
+              working-directory: app/..
 
             - name: Tests ausführen
               run: ./gradlew test
-              working-directory: app
+              working-directory: app/..
 
             - name: Formatierung prüfen
               run: ./gradlew spotlessCheck
-              working-directory: app
+              working-directory: app/..
